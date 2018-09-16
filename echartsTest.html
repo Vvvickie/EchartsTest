@@ -2,9 +2,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Echarts</title>
+    <style>
+        #main {
+            width: 600px;
+            height: 450px;
+            float: left;
+            margin-left: 50px;
+            margin-top: 100px;
+        }
+
+        #origin {
+            width: 600px;
+            height: 450px;
+            float: left;
+            margin-left: 50px;
+            margin-top: 100px;
+        }
+    </style>
+    <script src="node_modules/echarts/dist/echarts.js"></script>
 </head>
 <body>
-$END$
+<div id="main"></div>
+<div id="origin"></div>
 </body>
+<script>
+    var Count = echarts.init(document.getElementById('main'));
+    var option = {
+        color: ['#E76F51', '#B2DBBF', '#F4A261'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        title: {
+            text: '滚城一团训练营听课人数猜测',
+            left: 50
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: ['学员', '看戏', '路过'],
+            right: 50,
+            align: 'left'
+        },
+        xAxis: {
+            type: 'category',
+            axisTick: {show: false},
+            data: ["第一期", "第二期", "第三期", "第四期", "第五期"]
+        },
+        yAxis: {},
+        series: [{
+            name: '学员',
+            type: 'bar',
+            barGap: 0,
+            data: [2100, 1400, 1300, 1230, 1100]
+        }, {
+            name: '看戏',
+            type: 'bar',
+            barGap: 0,
+            data: [2400, 600, 500, 450, 600]
+        }, {
+            name: '路过',
+            type: 'bar',
+            barGap: 0,
+            data: [1200, 500, 400, 600, 500]
+        },
+        ]
+    };
+    Count.setOption(option);
+    var origin = echarts.init(document.getElementById('origin'));
+    var option2 = {
+        title: {
+            text: '第一期观众群体猜测'
+        },
+        tooltip: {
+            trigger: 'item',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        series: [
+            {
+                name: '来源猜测',
+                type: 'pie',
+                radius: '55%',
+                data: [
+                    {value: 1200, name: '微博报名学员'},
+                    {value: 600, name: '分享吸引学员'},
+                    {value: 300, name: 'bilibili偶然学员'},
+                    {value: 800, name: '微博围观大牛'},
+                    {value: 816, name: '朋友同事'},
+                    {value: 162, name: '家人'},
+                    {value: 1000, name: '微博围观群众'},
+                    {value: 803, name: 'bilibili吃瓜群众'},
+                ],
+                roseType: 'angle',
+                itemStyle: {
+                    normal: {
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.2)'
+                    }
+                }
+            }
+        ],
+    };
+    origin.setOption(option2);
+</script>
+
 </html>
